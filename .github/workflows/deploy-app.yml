@@ -10,36 +10,37 @@ jobs:
       matrix:
         node-version: [8.x, 10.x, 12.x]
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install and test
-      run: |
-        npm install
-        npm test
-      env:
-        CI: true
-	deploy:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install and test
+        run: |
+          npm install
+          npm test
+        env:
+          CI: true
+  deploy:
     needs: [test]
     runs-on: ubuntu-latest
 		steps:
-    - name: SSH and deploy NodeJS app
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASS }}
-        script: |
-          cd /var/www
-          sudo git clone https://github.com/pablomag/github-actions.git
-          cd github-actions
-          sudo apt install node-typescript
-          sudo npm install --production
-          sudo npm install pm2 -g
-          sudo tsc
-          sudo pm2 start dist/index.js
-          sudo pm2 startup ubuntu -u ${{ secrets.SSH_USER }}
-          sudo pm2 save
+      - name: SSH and deploy NodeJS app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASS }}
+          port: 22
+          script: |
+            cd /var/www
+            sudo git clone https://github.com/pablomag/github-actions.git
+            cd github-actions
+            sudo apt install node-typescript
+            sudo npm install --production
+            sudo npm install pm2 -g
+            sudo tsc
+            sudo pm2 start dist/index.js
+            sudo pm2 startup ubuntu -u ${{ secrets.SSH_USER }}
+            sudo pm2 save
