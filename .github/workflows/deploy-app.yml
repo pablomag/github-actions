@@ -41,6 +41,6 @@ jobs:
             sudo npm install --production
             sudo npm install pm2 -g
             sudo tsc
-            sudo pm2 start dist/index.js
+            sudo pm2 start dist/server.js
             sudo pm2 startup ubuntu -u ${{ secrets.SSH_USER }}
             sudo pm2 save

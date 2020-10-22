@@ -1,5 +1,5 @@
-import supertest from "supertest";
 import { app } from "../../src/index";
+import supertest from "supertest";
 
 export class Helper {
     apiServer: supertest.SuperTest<supertest.Test>;

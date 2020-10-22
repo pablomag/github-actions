@@ -2,12 +2,12 @@
     "name": "project-name",
     "version": "1.0.0",
     "description": "Github actions test",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
-        "dev": "nodemon dist/index.js",
-        "prod": "node dist/index.js",
+        "dev": "nodemon dist/server.js",
+        "prod": "node dist/server.js",
         "watch": "tsc -w",
-        "test": "jest --runInBand --detectOpenHandles",
+        "test": "jest --runInBand",
         "test-watch": "jest --runInBand --watch"
     },
     "keywords": [],

@@ -39,4 +39,4 @@ jobs:
             sudo git pull
             sudo npm install
             sudo tsc
-            sudo pm2 restart dist/index.js
+            sudo pm2 restart dist/server.js
