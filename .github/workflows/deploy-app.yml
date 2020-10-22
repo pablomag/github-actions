@@ -24,7 +24,7 @@ jobs:
   deploy:
     needs: [test]
     runs-on: ubuntu-latest
-		steps:
+    steps:
       - name: SSH and deploy NodeJS app
         uses: appleboy/ssh-action@master
         with:
