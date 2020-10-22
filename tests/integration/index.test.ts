@@ -19,7 +19,7 @@ describe('Sum endpoint', () => {
 describe('Index endpoint', () => {
   it('Consuming API endpoint index', async (done) => {
     const response = await helper.apiServer.get('/')
-    expect(response.text).toBe('Hello world!')
+    expect(response.text).toBe('Hello pablomag!')
     expect(response.status).toBe(200)
     done()
   })
