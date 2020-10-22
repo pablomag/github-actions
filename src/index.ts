@@ -5,7 +5,7 @@ import { sum } from "./util/sum";
 export const app = express();
 
 app.get('/', (_: express.Request, res: express.Response) => {
-    res.send('Hello world!');
+    res.send('Hello pablomag!');
 });
 
 app.get('/sum/:val1/:val2', (req: express.Request, res: express.Response) => {
