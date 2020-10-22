@@ -26,12 +26,6 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
-      - name: Make envfile
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          envkey_SOME_API_KEY: "123456abcdef"
-          envkey_SECRET_KEY: ${{ secrets.SSH_USER }}
-          file_name: .env
       - name: Deploy update
         uses: appleboy/ssh-action@master
         with:
@@ -45,4 +39,8 @@ jobs:
             sudo git pull
             sudo npm install
             sudo tsc
+            sudo rm .env
+            sudo touch .env
+            sudo echo API_ENDPOINT=${{ SSH_HOST }} >> .env
+            sudo echo API_KEY=${{ secrets.SSH_KEY }} >> .env
             sudo pm2 restart dist/server.js
