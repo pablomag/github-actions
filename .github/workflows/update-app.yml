@@ -26,6 +26,12 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_SOME_API_KEY: "123456abcdef"
+          envkey_SECRET_KEY: ${{ secrets.SSH_USER }}
+          file_name: .env
       - name: Deploy update
         uses: appleboy/ssh-action@master
         with:
