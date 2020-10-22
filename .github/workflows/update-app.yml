@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASS }}
-          port: 22
+          port: ${{ secrets.SSH_PORT }}
           script: |
             cd /var/www/github-actions
             sudo git pull
