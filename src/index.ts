@@ -3,7 +3,7 @@ import express from "express";
 import { sum } from "./util/sum";
 
 export const app = express();
-const port = 3333;
+const port = 3030;
 
 app.get('/', (_: express.Request, res: express.Response) => {
     res.send('Hello world!');

@@ -1,0 +1,22 @@
+name: Deploy update
+
+on:
+	push:
+		branches: [master]
+
+jobs:
+	deploy:
+		runs-on: ubuntu-latest
+		steps:
+			- name: Deploy update
+				uses: appleboy/ssh-action@v0.1.2
+				with:
+					host: ${{ secrets/SSH_HOST }}
+					username: ${{ secrets/SSH_USER }}
+					password: ${{ secrets/SSH_PASS }}
+					script: |
+						cd /var/www/github-actions
+						sudo git pull
+						sudo npm install
+						sudo tsc
+						sudo pm2 restart dist/index.js

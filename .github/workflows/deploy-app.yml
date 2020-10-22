@@ -1,0 +1,27 @@
+name: Deploy application
+
+on:
+	workflow_dispatch:
+
+jobs:
+	deploy:
+		runs-on: ubuntu-latest
+		steps:
+			- name: Deploy NodeJS app
+				uses: appleboy/ssh-action@v0.1.2
+				with:
+					host: ${{ secrets/SSH_HOST }}
+					username: ${{ secrets/SSH_USER }}
+					password: ${{ secrets/SSH_PASS }}
+					script: |
+						cd /var/www
+						sudo git clone https://github.com/pablomag/github-actions.git
+						cd github-actions
+						sudo apt install node-typescript
+						sudo apt install npm
+						sudo npm install
+						sudo npm install pm2 -g
+						sudo tsc
+						sudo pm2 start dist/index.js
+						sudo pm2 startup ubuntu -u ${{ secrets/SSH_USER }}
+            sudo pm2 save
