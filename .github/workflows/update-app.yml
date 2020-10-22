@@ -43,4 +43,5 @@ jobs:
             sudo touch .env
             sudo echo API_ENDPOINT=${{ secrets.SSH_HOST }} >> .env
             sudo echo API_KEY=${{ secrets.SSH_KEY }} >> .env
+            sudo cat .env
             sudo pm2 restart dist/server.js
