@@ -44,7 +44,7 @@ jobs:
             sudo bash -c "echo SERVICE_PORT=${{ secrets.SERVICE_PORT }} >> .env"
             sudo bash -c "echo API_URL=${{ secrets.API_URL }} >> .env"
             sudo bash -c "echo API_PORT=${{ secrets.API_PORT }} >> .env"
-            sudo bash -c "cat < < 'EOF'
+            sudo bash -c "cat << 'EOF'
               echo API_SECRET=${{ secrets.API_SECRET }}
               EOF
               >> .env"
