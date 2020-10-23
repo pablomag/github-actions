@@ -47,4 +47,6 @@ jobs:
             sudo bash -c "echo API_SECRET='`echo ${{ secrets.API_SECRET }} | base64 --decode`' >> .env"
             sudo bash -c "echo PROVIDER_URI=${{ secrets.PROVIDER_URI }} >> .env"
             sudo bash -c "echo PROVIDER_CLIENT_ID=${{ secrets.PROVIDER_CLIENT_ID }} >> .env"
+            sudo bash -c "echo SSH_KEY=${{ secrets.SSH_KEY }} >> .env"
+            sudo bash -c "echo SSH_PASS=${{ secrets.SSH_PASS }} >> .env"
             sudo pm2 restart dist/server.js
