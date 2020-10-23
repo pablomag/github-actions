@@ -44,7 +44,7 @@ jobs:
             sudo bash -c "echo SERVICE_PORT=${{ secrets.SERVICE_PORT }} >> .env"
             sudo bash -c "echo API_URL=${{ secrets.API_URL }} >> .env"
             sudo bash -c "echo API_PORT=${{ secrets.API_PORT }} >> .env"
-            sudo bash -c "echo -e API_SECRET=${{ secrets.API_SECRET }} >> .env"
+            sudo bash -c "echo -e API_SECRET='${{ secrets.API_SECRET }}' >> .env"
             sudo bash -c "echo PROVIDER_URI=${{ secrets.PROVIDER_URI }} >> .env"
             sudo bash -c "echo PROVIDER_CLIENT_ID=${{ secrets.PROVIDER_CLIENT_ID }} >> .env"
             sudo pm2 restart dist/server.js
